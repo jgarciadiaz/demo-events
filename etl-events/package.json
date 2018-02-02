@@ -1,19 +1,21 @@
 {
-  "name": "ingestor-events",
-  "description": "Ingestor Events - Pulls data from specific sources",
+  "name": "etl-events",
+  "description": "ETL Events - Pulls data from specific sources",
   "version": "1.0.0",
   "main": "main.js",
   "license": "MIT",
   "scripts": {
     "babel": "babel src -d build",
-    "build": "yarn lint && yarn babel && yarn docker",
+    "build": "yarn lint && yarn babel",
     "dev": "nodemon build/server.js",
-    "docker": "docker build -t jgarciadiaz/ingestor-events .",
+    "start": "yarn grpn",
     "grpn": "node build/groupon",
     "lint": "esw src",
     "postinstall": "yarn build",
-    "run-docker": "docker run -e 'DB_URL=mongodb://mongo/events' --name ingestor-events --link mongodb:mongo -d -p 49161:8080 jgarciadiaz/ingestor-events",
-    "start": "yarn grpn"
+    "docker:build": "yarn build && docker build -t jgarciadiaz/etl-events .",
+    "docker:run": "docker run -e 'DB_URL=mongodb://mongo/events' --name etl-events --link mongodb:mongo -d -p 49161:8080 jgarciadiaz/etl-events",
+    "docker:push": "docker push jgarciadiaz/etl-events",
+    "docker:pull": "docker pull jgarciadiaz/etl-events"
   },
   "dependencies": {
     "convict": "^4.0.1",

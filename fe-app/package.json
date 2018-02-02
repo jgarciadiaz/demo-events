@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build && yarn docker",
+    "build": "next build",
     "docker": "docker build -t jgarciadiaz/site-events .",
     "start": "next start --p 3000 --i 0.0.0.0",
     "postinstall": "yarn build",
