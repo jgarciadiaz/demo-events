@@ -2,7 +2,6 @@ nginx:
     container_name: container-nginx
     image: jgarciadiaz/container-nginx
     links:
-        - api-events:api-events
         - site-events:site-events
     ports:
         - "8888:80"
@@ -28,9 +27,9 @@ site-events:
     environment:
         API_URL: http://api-events
 
-ingestor-events:
-  container_name: ingestor-events
-  image: jgarciadiaz/ingestor-events
+etl-events:
+  container_name: etl-events
+  image: jgarciadiaz/etl-events
   links:
         - mongodb:mongo
   environment:
