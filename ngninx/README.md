@@ -8,16 +8,16 @@ Docker commands
 
 Build docker image
 
-`docker build -t garciadiazjaime/container-nginx .`
+`docker build -t jgarciadiaz/container-nginx .`
 
 Run docker instances based on an image
 
-`docker run -d -p 8888:80 garciadiazjaime/container-nginx`
+`docker run -d -p 8888:80 jgarciadiaz/container-nginx`
 
 Push docker image to repo
 
-`docker push garciadiazjaime/container-nginx`
+`docker push jgarciadiaz/container-nginx`
 
 Pull docker image from repo
 
-`docker pull garciadiazjaime/container-nginx`
+`docker pull jgarciadiaz/container-nginx`
