@@ -20,6 +20,14 @@ const config = convict({
     default: 8080,
     env: 'PORT',
   },
+  api: {
+    url: {
+      doc: 'API URL',
+      format: String,
+      default: 'http://127.0.0.1:8000/',
+      env: 'API_URL',
+    }
+  },
   db: {
     url: {
       doc: 'Database host name/IP',

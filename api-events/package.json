@@ -16,6 +16,7 @@
     "docker:pull": "docker pull jgarciadiaz/api-events"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "convict": "^4.0.1",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
