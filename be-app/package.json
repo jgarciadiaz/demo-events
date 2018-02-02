@@ -5,13 +5,15 @@
   "license": "MIT",
   "scripts": {
     "babel": "babel src -d build",
-    "build": "yarn lint && yarn babel && yarn docker",
+    "build": "yarn lint && yarn babel",
     "dev": "nodemon build/server",
-    "docker": "docker build -t jgarciadiaz/api-events .",
     "start": "node ./build/server",
     "lint": "esw src",
     "postinstall": "yarn build",
-    "run-docker": "docker run -e 'DB_URL=mongodb://mongo/events' --name api-events --link mongodb:mongo -d -p 49160:8000 jgarciadiaz/api-events"
+    "docker:build": "yarn build && docker build -t jgarciadiaz/api-events .",
+    "docker:run": "docker run -e 'DB_URL=mongodb://mongo/events' -e 'PORT=80' --name api-events --link mongodb:mongo -d -p 49160:80 jgarciadiaz/api-events",
+    "docker:push": "docker push jgarciadiaz/api-events",
+    "docker:pull": "docker pull jgarciadiaz/api-events"
   },
   "dependencies": {
     "convict": "^4.0.1",

@@ -14,9 +14,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "docker": "docker build -t jgarciadiaz/site-events .",
     "start": "next start --p 3000 --i 0.0.0.0",
     "postinstall": "yarn build",
-    "run-docker": "docker run --name site-events --link api-events:api -d -p 49162:3000 jgarciadiaz/site-events"
+    "docker:build": "yarn build && docker build -t jgarciadiaz/site-events .",
+    "docker:run": "docker run --name site-events --link api-events:api-events -d -p 49162:3000 jgarciadiaz/site-events",
+    "docker:push": "docker push jgarciadiaz/site-events",
+    "docker:pull": "docker pull jgarciadiaz/site-events"
   }
 }
