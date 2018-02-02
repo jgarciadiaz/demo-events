@@ -12,7 +12,9 @@ Build docker image
 
 Run docker instances based on an image
 
-`docker run -d -p 8888:80 jgarciadiaz/container-nginx`
+`docker run --name container-nginx --link site-events:site-events -d -p 8888:80 jgarciadiaz/container-nginx`
+
+docker run -e 'DB_URL=mongodb://mongo/events' -e 'PORT=80' --name api-events --link mongodb:mongo -d -p 49160:80 jgarciadiaz/api-events
 
 Push docker image to repo
 
