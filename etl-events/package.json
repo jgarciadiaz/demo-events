@@ -6,14 +6,14 @@
   "license": "MIT",
   "scripts": {
     "babel": "babel src -d build",
-    "build": "yarn lint && yarn babel",
+    "build": "yarn babel",
     "dev": "nodemon build/server.js",
     "start": "yarn grpn",
     "grpn": "node build/groupon",
     "lint": "esw src",
     "postinstall": "yarn build",
     "docker:build": "yarn build && docker build -t jgarciadiaz/etl-events .",
-    "docker:run": "docker run -e 'DB_URL=mongodb://mongo/events' --name etl-events --link mongodb:mongo -d -p 49161:8080 jgarciadiaz/etl-events",
+    "docker:run": "docker run -e 'DB_URL=mongodb://mongo/events' -e 'API_URL=http://api-events' --name etl-events --link mongodb:mongo --link api-events:api-events -d -p 49161:8080 jgarciadiaz/etl-events",
     "docker:push": "docker push jgarciadiaz/etl-events",
     "docker:pull": "docker pull jgarciadiaz/etl-events"
   },

@@ -3,7 +3,7 @@ import request from 'request-promise-native';
 const load = (props, events) => {
   const options = {
     method: 'POST',
-    uri: `${props.apiUrl}events`,
+    uri: `${props.apiUrl}/events`,
     body: {
       events
     },

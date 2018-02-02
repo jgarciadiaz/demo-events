@@ -32,8 +32,10 @@ etl-events:
   image: jgarciadiaz/etl-events
   links:
         - mongodb:mongo
+        - api-events:api-events
   environment:
         DB_URL: mongodb://mongo/events
+        API_URL: http://api-events
 
 redis:
     container_name: redis
