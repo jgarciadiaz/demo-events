@@ -7,7 +7,9 @@ import bodyParser from 'body-parser';
 import config from './config';
 import openDatabase from './util/openDatabase';
 import eventSchema from './graphql/schema/eventSchema';
+import weatherSchema from './graphql/schema/weatherSchema'
 import EventModel from './model/eventModel'
+import WeatherModel from './model/weatherModel'
 
 mongoose.Promise = global.Promise;
 
@@ -45,6 +47,22 @@ const setRoutes = () => {
         res.send({
           status: false,
           error: error.message
+        })
+      })
+  })
+
+  app.get('/weather', graphqlHTTP(() => ({
+    schema: weatherSchema
+  })))
+  
+  app.post('/weather', (req, res) => {
+    const { weather } = req.body
+    const data = new WeatherModel(weather)
+    data.save()
+      .then(results => {
+        res.send({
+          status: true,
+          data: results._id
         })
       })
   })
