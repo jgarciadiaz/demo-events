@@ -1,7 +1,7 @@
 {
-  "name": "be-app",
+  "name": "api-events",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./build/server",
   "license": "MIT",
   "scripts": {
     "babel": "babel src -d build",
