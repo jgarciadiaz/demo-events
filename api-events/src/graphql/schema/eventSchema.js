@@ -3,36 +3,36 @@ import {
   GraphQLSchema,
   GraphQLString,
   GraphQLList,
-} from 'graphql/type';
+} from 'graphql/type'
 
-import eventMongo from '../../model/eventModel';
+import eventMongo from '../../model/eventModel'
 
 const eventType = new GraphQLObjectType({
   name: 'event',
-  description: 'event event',
+  description: 'Event',
   fields: () => ({
     uuid: {
       type: GraphQLString,
-      description: 'The id of the event.',
+      description: 'Event ID',
     },
     title: {
       type: GraphQLString,
-      description: 'Events title',
+      description: 'Event Title',
     },
     description: {
       type: GraphQLString,
-      description: 'Events description',
+      description: 'Event Description',
     },
     url: {
       type: GraphQLString,
-      description: 'Events url',
+      description: 'Event URL',
     },
     image: {
       type: GraphQLString,
-      description: 'Events image',
+      description: 'Event Image',
     },
   }),
-});
+})
 
 const eventSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -47,15 +47,12 @@ const eventSchema = new GraphQLSchema({
           },
         },
         resolve: (root, { uuid }) => {
-          const foundEvents = new Promise((resolve, reject) => {
-            const query = uuid ? { uuid } : {};
-            eventMongo.find(query, (error, events) => (error ? reject(error) : resolve(events)));
-          });
-          return foundEvents;
+          const query = uuid ? { uuid } : {}
+          return eventMongo.find(query)
         },
       },
     },
   }),
-});
+})
 
-export default eventSchema;
+export default eventSchema

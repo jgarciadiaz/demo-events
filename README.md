@@ -20,3 +20,14 @@ Links
 [Docker commands](https://github.com/jgarciadiaz/demo-events/tree/master/docker)
 
 [Docker images](https://hub.docker.com/)
+
+
+Improves:
+change order demo
+mention JS on mongodb
+Try different color for the terminal
+Try Curl for Graphql instead that browser (poor zoom)
+play with temperature and which events demo shows
+ngnix run asset statics
+enable routes on ngnix 
+add a summary presentation

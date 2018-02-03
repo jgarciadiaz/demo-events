@@ -13,23 +13,23 @@ const eventType = new GraphQLObjectType({
   fields: () => ({
     celsius: {
       type: GraphQLString,
-      description: 'celsius',
+      description: 'Celsius',
     },
     fahrenheit: {
       type: GraphQLString,
-      description: 'fahrenheit',
+      description: 'Fahrenheit',
     },
     pressure: {
       type: GraphQLString,
-      description: 'pressure',
+      description: 'Pressure',
     },
     relativeHumidity: {
       type: GraphQLString,
-      description: 'relativeHumidity',
+      description: 'RelativeHumidity',
     },
     lightLevel: {
       type: GraphQLString,
-      description: 'lightLevel',
+      description: 'Light Level',
     }
   }),
 });
@@ -47,11 +47,8 @@ const eventSchema = new GraphQLSchema({
           },
         },
         resolve: (root, { celsius }) => {
-          const foundEvents = new Promise((resolve, reject) => {
-            const query = celsius ? { celsius } : {};
-            eventMongo.find(query, (error, events) => (error ? reject(error) : resolve(events)));
-          });
-          return foundEvents;
+          const query = celsius ? { celsius } : {};
+          return eventMongo.find(query)
         },
       },
     },

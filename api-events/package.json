@@ -1,13 +1,12 @@
 {
   "name": "api-events",
   "version": "1.0.0",
-  "main": "./build/server",
+  "main": "./dist/server",
   "license": "MIT",
   "scripts": {
-    "babel": "babel src -d build",
-    "build": "yarn babel",
-    "dev": "nodemon build/server",
-    "start": "node ./build/server",
+    "build": "babel src -d dist",
+    "dev": "nodemon ./dist/server",
+    "start": "node ./dist/server",
     "lint": "esw src",
     "postinstall": "yarn build",
     "docker:build": "yarn build && docker build -t jgarciadiaz/api-events .",

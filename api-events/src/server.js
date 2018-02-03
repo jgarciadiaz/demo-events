@@ -1,76 +1,20 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import graphqlHTTP from 'express-graphql';
-import morgan from 'morgan';
-import bodyParser from 'body-parser';
+import express from 'express'
+import morgan from 'morgan'
+import bodyParser from 'body-parser'
 
-import config from './config';
-import openDatabase from './util/openDatabase';
-import eventSchema from './graphql/schema/eventSchema';
-import weatherSchema from './graphql/schema/weatherSchema'
-import EventModel from './model/eventModel'
-import WeatherModel from './model/weatherModel'
+import { openDatabase } from './services/databaseService'
+import routes from './routes'
+import config from './config'
 
-mongoose.Promise = global.Promise;
+const app = express()
 
-const props = {
-  ip: config.get('ip'),
-  port: config.get('port'),
-  dbUrl: config.get('db.url'),
-};
-const app = express();
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(morgan('tiny'))
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(morgan('tiny'));
-
-const startApp = confg =>
-  app.listen(confg.port, confg.ip, () => console.log(`Express Running ${props.ip}:${props.port}`));
-
-
-const setRoutes = () => {
-  app.get('/events', graphqlHTTP(() => ({
-    schema: eventSchema,
-  })));
-
-  app.post('/events', (req, res) => {
-    const { events } = req.body
-    const promises = events.map(event => new EventModel(event).save())
-    Promise.all(promises)
-      .then(results => {
-        res.send({
-          status: true,
-          data: results.length
-        })
-      })
-      .catch(error => {
-        res.send({
-          status: false,
-          error: error.message
-        })
-      })
-  })
-
-  app.get('/weather', graphqlHTTP(() => ({
-    schema: weatherSchema
-  })))
-  
-  app.post('/weather', (req, res) => {
-    const { weather } = req.body
-    const data = new WeatherModel(weather)
-    data.save()
-      .then(results => {
-        res.send({
-          status: true,
-          data: results._id
-        })
-      })
-  })
-};
-
-openDatabase(props.dbUrl)
+openDatabase(config.get('db.url'))
   .then(() => {
-    startApp(props);
-    setRoutes();
+    app.use('/', routes)
+    app.listen(config.get('port'), config.get('ip'), () => console.log(`Running on ${config.get('ip')}:${config.get('port')}`))
   })
-  .catch(console.log);
+  .catch(console.log)
