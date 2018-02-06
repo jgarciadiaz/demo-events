@@ -16,7 +16,9 @@
     "docker:build": "yarn build && docker build -t jgarciadiaz/ml-events .",
     "docker:run": "docker run -e 'DB_URL=mongodb://mongo/events' --name ml-events --link mongodb:mongo -d jgarciadiaz/ml-events",
     "docker:push": "docker push jgarciadiaz/ml-events",
-    "docker:pull": "docker pull jgarciadiaz/ml-events"
+    "docker:pull": "docker pull jgarciadiaz/ml-events",
+    "docker:start": "docker restart ml-events",
+    "docker:log": "docker logs ml-events"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
