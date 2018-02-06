@@ -6,10 +6,11 @@ Javascript everywhere: REST API, FE, ETL, DB, ML, IoT
 Components
 ----
 
-![alt text](./webjs.v2.png)
+![alt text](./webjs.png)
 
 Links
 ----
+[Presentation](./webjs.pdf)
 
 [Rest API](https://github.com/jgarciadiaz/demo-events/tree/master/api-events)
 
