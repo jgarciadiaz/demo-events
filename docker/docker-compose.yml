@@ -37,11 +37,13 @@ etl-events:
         DB_URL: mongodb://mongo/events
         API_URL: http://api-events
 
-redis:
-    container_name: redis
-    image: redis
-    ports:
-        - "6379:6379"
+ml-events:
+    container_name: ml-events
+    image: jgarciadiaz/ml-events
+    links:
+        - mongodb:mongo
+    environment:
+        DB_URL: mongodb://mongo/events
 
 mongodb:
     container_name: mongodb

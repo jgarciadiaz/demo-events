@@ -5,12 +5,18 @@
   "repository": {},
   "license": "MIT",
   "dependencies": {
-    "limdu": "^0.9.3"
+    "convict": "^4.0.2",
+    "limdu": "^0.9.3",
+    "mongoose": "^5.0.3"
   },
   "scripts": {
     "build": "babel src -d dist",
     "dev": "node ./dist/index.js",
-    "start": "node ./dist/index.js"
+    "start": "node ./dist/index.js",
+    "docker:build": "yarn build && docker build -t jgarciadiaz/ml-events .",
+    "docker:run": "docker run -e 'DB_URL=mongodb://mongo/events' --name ml-events --link mongodb:mongo -d jgarciadiaz/ml-events",
+    "docker:push": "docker push jgarciadiaz/ml-events",
+    "docker:pull": "docker pull jgarciadiaz/ml-events"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
