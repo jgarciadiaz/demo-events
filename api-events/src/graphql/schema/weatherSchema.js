@@ -6,7 +6,7 @@ import {
   GraphQLInt
 } from 'graphql/type';
 
-import eventMongo from '../../model/weatherModel';
+import weatherModel from '../../model/weatherModel';
 
 const eventType = new GraphQLObjectType({
   name: 'event',
@@ -31,6 +31,10 @@ const eventType = new GraphQLObjectType({
     lightLevel: {
       type: GraphQLString,
       description: 'Light Level',
+    },
+    created: {
+      type: GraphQLString,
+      description: 'Created Date',
     }
   }),
 });
@@ -47,7 +51,7 @@ const eventSchema = new GraphQLSchema({
             type: GraphQLInt,
           },
         },
-        resolve: (root, { limit = 1 }) => eventMongo.find().limit(limit)
+        resolve: (root, { limit = 1 }) => weatherModel.find().sort({ 'created': -1 }).limit(limit)
       },
     },
   }),

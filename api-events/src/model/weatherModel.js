@@ -8,6 +8,7 @@ const WeatherSchema = new mongoose.Schema({
   lightLevel: String,
   city: String,
   gps: String,
+  created: { type: Date, default: Date.now }
 })
 
 const WeatherModel = mongoose.model('weather', WeatherSchema)

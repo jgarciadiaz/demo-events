@@ -11,8 +11,8 @@ export default class extends React.Component {
 
   static async getInitialProps({ req }) {
     const res = await Promise.all([
-      fetch('http://0.0.0.0:49160/events?query={event(uuid:%22%22){title,description,url,image,uuid,score}}'),
-      fetch('http://0.0.0.0:49160/weather?query={report{celsius,fahrenheit}}'),
+      fetch('http://api-events/events?query={event(uuid:%22%22){title,description,url,image,uuid,score}}'),
+      fetch('http://api-events/weather?query={report{celsius,fahrenheit}}'),
     ])
     const eventsResults = await res[0].json()
     const weatherResults = await res[1].json()
