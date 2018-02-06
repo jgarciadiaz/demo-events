@@ -23,8 +23,7 @@ export default ({ children, title = 'Chicago Events' }) => (
       
       <style jsx global>{`
         body {
-          margin: 0
-          width: 400px;
+          max-width: 450px;
           margin: 0 auto;
         }
       `}</style>

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const EventSchema = new mongoose.Schema({
-  uuid: String,
+  uuid: { type: String, unique: true },
   title: String,
   description: String,
   url: String,

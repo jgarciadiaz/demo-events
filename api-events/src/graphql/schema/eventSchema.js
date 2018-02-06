@@ -3,6 +3,7 @@ import {
   GraphQLSchema,
   GraphQLString,
   GraphQLList,
+  GraphQLInt
 } from 'graphql/type'
 
 import eventMongo from '../../model/eventModel'
@@ -32,7 +33,7 @@ const eventType = new GraphQLObjectType({
       description: 'Event Image',
     },
     score: {
-      type: GraphQLString,
+      type: GraphQLInt,
       description: 'Event Score for Clasification',
     }
   }),
