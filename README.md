@@ -6,7 +6,7 @@ Javascript everywhere: REST API, FE, ETL, DB, ML, IoT
 Components
 ----
 
-![alt text](./webjs.png)
+![alt text](./webjs.v2.png)
 
 Links
 ----
