@@ -18,7 +18,7 @@ openDatabase(config.get('db.url'))
 
 			Promise.all(promises)
 				.then(results => {
-					console.log(`${results.length} predictions made :)`)
+					console.log(`${results.length} classifications made :)`)
 					closeDatabase()
 				})
 		})
