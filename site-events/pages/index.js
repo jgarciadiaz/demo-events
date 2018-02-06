@@ -10,9 +10,17 @@ import Event from '../components/event'
 export default class extends React.Component {
 
   static async getInitialProps({ req }) {
-    const res = await fetch('http://0.0.0.0:49160/events?query={event(uuid:%22%22){title,description,url,image,uuid,score}}')
-    const events = await res.json()
-    return { events }
+    const res = await Promise.all([
+      fetch('http://0.0.0.0:49160/events?query={event(uuid:%22%22){title,description,url,image,uuid,score}}'),
+      fetch('http://0.0.0.0:49160/weather?query={report{celsius,fahrenheit}}'),
+    ])
+    const eventsResults = await res[0].json()
+    const weatherResults = await res[1].json()
+
+    return {
+      events: eventsResults && eventsResults.data && eventsResults.data.event ? eventsResults.data.event : [],
+      weather: weatherResults && weatherResults.data && weatherResults.data.report ? weatherResults.data.report[0] : null
+    }
   }
 
   state = {
@@ -22,12 +30,12 @@ export default class extends React.Component {
   setFilterIndex = index => this.setState({ selectedIndex: index })
 
   renderEvents(selectedIndex) {
-    const { events } = this.props
-    if (events && events.data && events.data.event && events.data.event.length) {
+    const { events, weather } = this.props
+    if (events.length) {
       if (!selectedIndex) {
-        return events.data.event.map(event => <Event event={event} key={event.uuid} />)
+        return events.map(event => <Event event={event} key={event.uuid} />)
       }
-      return events.data.event
+      return events
         .filter(event => event.score === selectedIndex - 1)
         .map(event => <Event event={event} key={event.uuid} />)
     }
@@ -36,8 +44,9 @@ export default class extends React.Component {
 
   render() {
     const { selectedIndex } = this.state
+    const { weather } = this.props
     return (<Layout>
-      <Filters clickHandler={this.setFilterIndex} selectedIndex={selectedIndex} />
+      <Filters clickHandler={this.setFilterIndex} selectedIndex={selectedIndex} weather={weather} />
       {this.renderEvents(selectedIndex)}
     </Layout>)
   }

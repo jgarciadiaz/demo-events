@@ -3,6 +3,7 @@ import {
   GraphQLSchema,
   GraphQLString,
   GraphQLList,
+  GraphQLInt
 } from 'graphql/type';
 
 import eventMongo from '../../model/weatherModel';
@@ -38,18 +39,15 @@ const eventSchema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-      weather: {
+      report: {
         type: new GraphQLList(eventType),
         args: {
-          celsius: {
-            name: 'celsius',
-            type: GraphQLString,
+          limit: {
+            name: 'Limits the number of results',
+            type: GraphQLInt,
           },
         },
-        resolve: (root, { celsius }) => {
-          const query = celsius ? { celsius } : {};
-          return eventMongo.find(query)
-        },
+        resolve: (root, { limit = 1 }) => eventMongo.find().limit(limit)
       },
     },
   }),
