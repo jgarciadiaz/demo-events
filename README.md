@@ -1,7 +1,7 @@
 Fullstack JS Demo
 ====
 
-Javascript everywhere: BE, FE, Scripts, DB, Cache
+Javascript everywhere: REST API, FE, ETL, DB, ML, IoT
 
 Components
 ----
@@ -11,23 +11,16 @@ Components
 Links
 ----
 
-[BE Rest API](https://github.com/jgarciadiaz/demo-events/tree/master/be-app)
+[Rest API](https://github.com/jgarciadiaz/demo-events/tree/master/api-events)
 
-[FE](https://github.com/jgarciadiaz/demo-events/tree/master/fe-app)
+[FE](https://github.com/jgarciadiaz/demo-events/tree/master/site-events)
 
-[Ingestor](https://github.com/jgarciadiaz/demo-events/tree/master/ingestor)
+[ETL](https://github.com/jgarciadiaz/demo-events/tree/master/etl-events)
+
+[ML](https://github.com/jgarciadiaz/demo-events/tree/master/ml-events)
+
+[IoT](https://github.com/jgarciadiaz/demo-events/tree/master/iot-weather)
 
 [Docker commands](https://github.com/jgarciadiaz/demo-events/tree/master/docker)
 
 [Docker images](https://hub.docker.com/)
-
-
-Improves:
-change order demo
-mention JS on mongodb
-Try different color for the terminal
-Try Curl for Graphql instead that browser (poor zoom)
-play with temperature and which events demo shows
-ngnix run asset statics
-enable routes on ngnix 
-add a summary presentation
