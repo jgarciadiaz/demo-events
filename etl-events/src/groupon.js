@@ -22,7 +22,7 @@ const getEvent = event => ({
   image: event.grid6ImageUrl,
 });
 
-const transform = (html) => {
+const transform = html => {
   const data = JSON.parse(html);
   return data.deals && data.deals.length ? data.deals.map(getEvent) : [];
 };
