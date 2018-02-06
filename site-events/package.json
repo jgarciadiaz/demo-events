@@ -9,13 +9,13 @@
     "next": "^4.1.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-lazyload": "^2.3.0",
     "styled-jsx": "^2.1.3"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start --p 3000 --i 0.0.0.0",
-    "postinstall": "yarn build",
     "docker:build": "yarn build && docker build -t jgarciadiaz/site-events .",
     "docker:run": "docker run --name site-events --link api-events:api-events -d -p 49162:3000 jgarciadiaz/site-events",
     "docker:push": "docker push jgarciadiaz/site-events",

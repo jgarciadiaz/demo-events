@@ -12,6 +12,7 @@ export default ({ children, title = 'Chicago Events' }) => (
         <title>{ title }</title>
         <meta charSet='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <link rel="icon" type="image/png" href="http://www.pvhc.net/img46/lopojkylehzltkfgmtcf.png" />
       </Head>
 
       <Mainmenu />
@@ -23,6 +24,8 @@ export default ({ children, title = 'Chicago Events' }) => (
       <style jsx global>{`
         body {
           margin: 0
+          width: 400px;
+          margin: 0 auto;
         }
       `}</style>
     </div>

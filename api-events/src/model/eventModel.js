@@ -6,6 +6,7 @@ const EventSchema = new mongoose.Schema({
   description: String,
   url: String,
   image: String,
+  score: Number
 });
 
 const GrpnEvent = mongoose.model('event', EventSchema);

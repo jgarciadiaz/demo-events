@@ -10,7 +10,7 @@ import Event from '../components/event'
 export default class extends React.Component {
 
   static async getInitialProps({ req }) {
-    const res = await fetch('http://api-events/events?query={event(uuid:%22%22){title,description,url,image,uuid}}')
+    const res = await fetch('http://0.0.0.0:49160/events?query={event(uuid:%22%22){title,description,url,image,uuid,score}}')
     const events = await res.json()
     return { events }
   }

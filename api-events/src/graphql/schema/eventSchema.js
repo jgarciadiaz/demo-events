@@ -31,6 +31,10 @@ const eventType = new GraphQLObjectType({
       type: GraphQLString,
       description: 'Event Image',
     },
+    score: {
+      type: GraphQLString,
+      description: 'Event Score for Clasification',
+    }
   }),
 })
 
