@@ -25,7 +25,7 @@ export default ({ selectedIndex, clickHandler, weather }) => (
       onClick={() => clickHandler(2)}
     />
     <BottomNavigationItem
-      icon={<span style={weatherStyle}>{weather.fahrenheit}</span>}
+      icon={<span style={weatherStyle}>{weather.fahrenheit} &deg;F</span>}
     />
   </BottomNavigation>
 )
